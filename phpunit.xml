@@ -1,0 +1,9 @@
+<phpunit verbose="true" color="true" bootstrap="tests/bootstrap.php">
+	<testsuites>
+		<testsuite name="test_integration">
+			<directory>tests</directory>
+			<exclude>tests/bootstrap.php</exclude>
+			<exclude>tests/travis-ci-apache</exclude>
+		</testsuite>
+	</testsuites>
+</phpunit>
