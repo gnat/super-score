@@ -25,7 +25,7 @@ Written by Nathaniel Sabanski.
 
 2. Remember to switch your `Config()` from 'development' to 'production' in `index.php` before going live!
 
-3. Set up your database tables using `install.sql`. You can use `mysql -uUser -pPassword -e "create database superscore; use superscore; source install.sql;"` or by importing the sql file manually with any database management software.
+3. Set up your database tables using `install.sql`. You can use `mysql -uUser -pPassword -e "create database superscore; use superscore; source install.sql;"` or by importing the SQL file manually using any database management software.
 
 4. Optionally, PHPUnit is used to run the tests.
 
