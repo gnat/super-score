@@ -131,4 +131,3 @@ Add to your `composer.json` file and run `php composer update`.
 ### License
 
 This project is licensed under the MIT License. This means you can use and modify it for free in private or commercial projects.
-
