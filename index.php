@@ -19,8 +19,8 @@ require_once(PATH_ROOT.'/src/Library/Autoload.php');
 
 // Set up for development or production.
 $config = new Config\Config();
-$config->Setup('production');
+$config->Setup('development'); // Switch to 'production' before going live!
 
 // Route request to proper controller.
 $router = new Library\Router();
-$router->Route($_SERVER['REQUEST_URI']); // Go !
+$router->Route($_SERVER['REQUEST_URI']); // Go.

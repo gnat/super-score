@@ -23,11 +23,13 @@ Written by Nathaniel Sabanski.
 
 1. Development and production configurations can be set in `src/config/Config.php`
 
-2. Set up your database tables using `install.sql`.
+2. Remember to switch your `Config()` from 'development' to 'production' in `index.php` before going live!
 
-3. Optionally, PHPUnit is used to run the tests.
+3. Set up your database tables using `install.sql`. You can use `mysql -uUser -pPassword -e "create database superscore; use superscore; source install.sql;"` or by importing the sql file manually with any database management software.
 
-4. If using nginx, enable routing by using a server rule to route to `index.php`. This is achieved in Apache using `mod_rewrite` and the `.htaccess` file.
+4. Optionally, PHPUnit is used to run the tests.
+
+5. If using nginx, enable routing by using a server rule to route to `index.php`. This is achieved in Apache using `mod_rewrite` and the `.htaccess` file.
 
 ### REST API Usage
 
@@ -111,22 +113,9 @@ Returns an aggregation of all previous data stored for User.
 
 ### Using Composer
 
-Add to your `composer.json` file and run `php composer update`.
+Install [Composer](https://getcomposer.org/) and use:
 
-```json
-{
-    "name": "you/your-project",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/gnat/super-score"
-        }
-    ],
-    "require": {
-        "gnat/super-score": "dev-master"
-    }
-}
-```
+```composer create-project -s dev --prefer-dist gnat/super-score .```
 
 ### License
 

@@ -31,7 +31,7 @@ class Config
 		$this->db_host = "localhost";
 		$this->db_user = "root";
 		$this->db_password = "";
-		$this->db_name = "test";
+		$this->db_name = "superscore";
 		$this->db_prefix = "";
 		$this->db_url_reset = true;
 
@@ -48,7 +48,7 @@ class Config
 		$this->db_host = "localhost";
 		$this->db_user = "root";
 		$this->db_password = "";
-		$this->db_name = "test";
+		$this->db_name = "superscore";
 		$this->db_prefix = "";
 		$this->db_url_reset = false;
 
