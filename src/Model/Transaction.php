@@ -1,6 +1,7 @@
 <?php namespace SuperScore\Model;
 
 use SuperScore\Library\Database;
+use SuperScore\Library\Cache;
 
 /**
 * Model for Transaction table.
@@ -66,6 +67,16 @@ class Transaction extends Model
 
 		$data['UserId'] = intval($data['UserId']);
 
+		// First, try the cache.
+		$cache = new Cache();
+		$cache_key = 'Transaction:UserId:'.$data['UserId'];
+		$output = $cache->KeyGet($cache_key);
+		$output = json_decode($output);
+
+		if(!empty($output))
+			return $output;
+
+		// Second, do real database query.
 		$db = new Database();
 
 		// Retrieve Transaction stats.
@@ -79,7 +90,10 @@ class Transaction extends Model
 			'UserId' => intval($data['UserId']),
 			'TransactionCount' => intval($result[0]),
 			'CurrencySum' => intval($result[1])
-		);		
+			);
+
+		// Save to cache for next time.
+		$cache->KeySet($cache_key, json_encode($output));
 
 		return $output;
 	}

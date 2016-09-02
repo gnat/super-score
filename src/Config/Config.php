@@ -13,13 +13,8 @@ class Config
 	var $db_password = ""; // Password for database account.
 	var $db_name = ""; // Name of database you want to connect to.
 	var $db_prefix = ""; // Optional prefix for database tables.
-	var $db_url_reset = false; // Is http://localhost/reset available to automatically clear the database?
+	var $db_url_reset = false; // Is http://localhost/reset available to clear the database?
 	var $secret_key = '123456789123456789123456789'; // Change this before going live!
-
-	// For test suite. 
-	var $test_userid = 1;
-	var $test_leaderboardid = 1;
-	var $test_transactionid = 1;
 
 	/**
 	* Set up for development.
@@ -70,6 +65,24 @@ class Config
 		else
 			$this->Development();
 	}
+
+	/**
+	* Optional advanced configuration below.
+	*/
+
+	// Test suite.
+	var $test_userid = 1;
+	var $test_leaderboardid = 1;
+	var $test_transactionid = 1;
+
+	// APCu cache (highly recommended for local server caching).
+	var $use_apcu = false;
+
+	// Redis cache (optional, for increased cache scaleability, performance).
+	var $use_redis = false;
+	var $servers_redis = array (
+			array("127.0.0.1", 6379, '') // Server, port, password.
+		);
 }
 
 ?>

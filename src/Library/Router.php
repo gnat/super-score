@@ -83,7 +83,8 @@ class Router
 				"score" => "SuperScore\Controller\Score",
 				"timestamp" => "SuperScore\Controller\Timestamp",
 				"transaction" => "SuperScore\Controller\Transaction",
-				"user" => "SuperScore\Controller\User"
+				"user" => "SuperScore\Controller\User",
+				"welcome" => "SuperScore\Controller\Home"
 			);
 
 		$controller = null;

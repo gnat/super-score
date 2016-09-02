@@ -15,6 +15,8 @@ class Reset extends Controller
 	*/
 	function Main($data) 
 	{	
+		global $config;
+
 		// Only continue if configuration allows it.
 		if($config->db_url_reset)
 		{
