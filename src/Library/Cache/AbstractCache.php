@@ -7,6 +7,7 @@ abstract class AbstractCache
 {
 	var $enabled = false; // Is this cache type enabled?
 	var $ttl = 5; // Default key/value time to live in seconds.
+	var $instance = null; // Stores instance if used by this cache type.
 
 	/** 
 	* Set value to the associated key in the cache.

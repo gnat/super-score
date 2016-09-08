@@ -80,8 +80,10 @@ class Config
 
 	// Redis cache (optional, for increased cache scaleability, performance).
 	var $use_redis = false;
-	var $servers_redis = array (
-			array("127.0.0.1", 6379, '') // Server, port, password.
+	var $server_redis = array (
+			'host' => '127.0.0.1',
+			'port' => '6379',
+			'password' => ''
 		);
 }
 

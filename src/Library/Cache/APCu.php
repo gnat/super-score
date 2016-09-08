@@ -22,8 +22,7 @@ class APCu extends AbstractCache
 			return false;
 		elseif(!function_exists('apcu_store')) // APCu support available on server?
 		{
-			echo "Error: PHP APCu extension not found. APCu is highly recommended. You can disable APCu in Config.php. (".__FILE__.")";
-			die();
+			exit("Error: PHP APCu extension not found. APCu is highly recommended. You can disable APCu in Config.php. (".__FILE__.")");
 		}
 		else
 			$this->enabled = true; // Only enable if we get this far.

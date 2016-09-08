@@ -10,3 +10,8 @@ define('PATH_ROOT', $test_path);
 
 // Autoload our class files.
 require_once(PATH_ROOT.'/src/Library/Autoload.php');
+
+$config = new Config\Config();
+$config->Setup('dev');
+$config->use_apcu = true;
+$config->use_redis = true;

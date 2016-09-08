@@ -26,10 +26,7 @@ class Database
 
 		// Sanity check.
 		if(empty($config->db_host) || empty($config->db_user) || empty($config->db_name))
-		{
-			echo "Error: Incomplete database configuration. (".__FILE__.")";
-			die();
-		}
+			exit("Error: Incomplete database configuration. (".__FILE__.")");
 
 		// Attempt connection to database.
 		try
@@ -38,8 +35,7 @@ class Database
 		}
 		catch(\PDOException $e)
 		{
-			echo "Error: Database connection failed. (".__FILE__.")";
-			die();
+			exit("Error: Database connection failed. (".__FILE__.")");
 		}
 
 		$this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);

@@ -9,7 +9,7 @@ class Autoload
 	* Attempt to load class file by name.
 	* @param string $name Class name.
 	*/
-	static function Load($class) 
+	static function Load($class)
 	{
 		// project-specific namespace prefix
 		$prefix = 'SuperScore\\';

@@ -21,7 +21,7 @@ class Cache
 			global $config;
 
 		$this->apcu = new Cache\APCu();
-		//$redis = new Cache\Redis();
+		$this->redis = new Cache\Redis();
 	}
 
 	/** 
@@ -37,8 +37,8 @@ class Cache
 
 		if($this->apcu->enabled)
 			$output = $this->apcu->KeySet($key, $value, $ttl);
-		//if($this->redis)
-		//	$output = Cache\Redis::KeySet($key, $value, $ttl);
+		if($this->redis->enabled)
+			$output = $this->redis->KeySet($key, $value, $ttl);
 
 		return $output;
 	}
@@ -60,11 +60,11 @@ class Cache
 			return $output;
 
 		// Redis cache next!
-		//if($this->redis)
-		//	$output = Cache\Redis::KeyGet($key);
+		if($this->redis->enabled)
+			$output = $this->redis->KeyGet($key);
 		
-		//if(!empty($output) || is_array($output))
-		//	return $output;
+		if(!empty($output) || is_array($output))
+			return $output;
 
 		return null;
 	}
@@ -78,8 +78,8 @@ class Cache
 	{
 		if($this->apcu->enabled)
 			return $this->apcu->KeyDelete($key);
-		//if($this->redis)
-		//	return Cache\Redis::KeyDelete($key);
+		if($this->redis->enabled)
+			return $this->redis->KeyDelete($key);
 
 		return false;
 	}
@@ -92,8 +92,8 @@ class Cache
 	{
 		if($this->apcu->enabled)
 			$this->apcu->KeyDeleteAll();
-		//if($this->redis)
-		//	Cache\Redis::KeyDeleteAll();
+		if($this->redis->enabled)
+			$this->redis->KeyDeleteAll();
 
 		return true;
 	}
