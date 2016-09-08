@@ -1,8 +1,8 @@
-<img src="http://imgur.com/Gict1wr.png" alt="Super Score" />
+<img src="http://i.imgur.com/kXVrIID.png" alt="Super Score" />
 
 [![Build Status](https://travis-ci.org/gnat/super-score.svg?branch=master)](https://travis-ci.org/gnat/super-score)
 
-Mobile game leaderboards, game currency logging, and user data storage.
+Game leaderboards, in-game currency logging, and player data storage.
 
 Written by Nathaniel Sabanski.
 
@@ -19,17 +19,20 @@ Written by Nathaniel Sabanski.
 * PHP 7+ or 5.3+.
 * Apache 2+ (mod_rewrite enabled) or nginx.
 
+### Optional
+
+* Redis and APCu may be installed for a high performance tiered cache.
+* PHPUnit may be installed to run the tests.
+
 ### Installation Notes
 
 1. Development and production configurations can be set in `src/config/Config.php`
 
-2. Remember to switch your `Config()` from 'development' to 'production' in `index.php` before going live!
+2. Set up your database tables using `install.sql`. You can use `mysql -uUser -pPassword -e "create database superscore; use superscore; source install.sql;"` or by importing the SQL file manually using any database management software.
 
-3. Set up your database tables using `install.sql`. You can use `mysql -uUser -pPassword -e "create database superscore; use superscore; source install.sql;"` or by importing the SQL file manually using any database management software.
+3. If using nginx, enable routing by using a server rule to route to `index.php`. This is achieved in Apache using `mod_rewrite` and the `.htaccess` file.
 
-4. Optionally, PHPUnit is used to run the tests.
-
-5. If using nginx, enable routing by using a server rule to route to `index.php`. This is achieved in Apache using `mod_rewrite` and the `.htaccess` file.
+4. Remember to switch your `Config()` from 'development' to 'production' in `index.php` before going live!
 
 ### REST API Usage
 
