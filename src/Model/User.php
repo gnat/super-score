@@ -1,6 +1,7 @@
 <?php namespace SuperScore\Model;
 
 use SuperScore\Library\Database;
+use SuperScore\Library\Cache;
 
 /**
 * Model for User table.
@@ -78,6 +79,17 @@ class User extends Model
 
 		$data['UserId'] = intval($data['UserId']);
 
+		// First, try the cache.
+		$cache = new Cache();
+		$cache_key = 'User.Load.'.$data['UserId'];
+		$output = $cache->KeyGet($cache_key);
+		$output = json_decode($output, true);
+
+		// If in cache, return it.
+		if(!empty($output))
+			return $output;
+
+		// Second, do real database query.
 		$db = new Database();
 
 		// Have we recorded this User?
@@ -89,7 +101,10 @@ class User extends Model
 		if($dbstate->rowCount() > 0)
 		{
 			$result = $dbstate->fetch();
-			$result = json_decode($result[1]);
+			$result = json_decode($result[1], true);
+
+			// Save to cache for next time, 10 second expiry.
+			$cache->KeySet($cache_key, json_encode($result), 10);
 
 			if(!empty($result))
 				return $result;

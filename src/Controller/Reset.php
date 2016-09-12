@@ -1,6 +1,7 @@
 <?php namespace SuperScore\Controller;
 
 use SuperScore\Library\Database;
+use SuperScore\Library\Cache;
 use SuperScore\Model;
 
 /**
@@ -20,6 +21,11 @@ class Reset extends Controller
 		// Only continue if configuration allows it.
 		if($config->db_url_reset)
 		{
+			// Clear Cache
+			$cache = new Cache();
+			$cache->DeleteAll();
+
+			// Clear Database
 			$db = new Database();
 
 			$model = new Model\User($db);

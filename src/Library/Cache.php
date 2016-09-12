@@ -88,7 +88,7 @@ class Cache
 	* Delete all keys/values in all caches.
 	* @return bool Success?
 	*/
-	function KeyDeleteAll($key) 
+	function DeleteAll()
 	{
 		if($this->apcu->enabled)
 			$this->apcu->KeyDeleteAll();

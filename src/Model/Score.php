@@ -1,6 +1,7 @@
 <?php namespace SuperScore\Model;
 
 use SuperScore\Library\Database;
+use SuperScore\Library\Cache;
 
 /**
 * Model for Score table.
@@ -96,6 +97,17 @@ class Score extends Model
 		$score = 0;
 		$rank_user = 0;
 
+		// First, try the cache.
+		$cache = new Cache();
+		$cache_key = 'Score.Leaderboard.'.$data['UserId'].'.'.$data['LeaderboardId'].'.'.$data['Offset'].'.'.$data['Limit'];
+		$output = $cache->KeyGet($cache_key);
+		$output = json_decode($output);
+
+		// If in cache, return it.
+		if(!empty($output))
+			return $output;
+
+		// Second, do real database query.
 		$db = new Database();
 
 		// Find the User's highest score on this Leaderboard.
@@ -146,6 +158,9 @@ class Score extends Model
 			"Rank" => intval($rank_user),
 			"Entries" => $leaderboard
 		);
+
+		// Save to cache for next time, 20 second expiry.
+		$cache->KeySet($cache_key, json_encode($output), 20);
 
 		return $output;
 	}
