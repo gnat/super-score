@@ -16,7 +16,7 @@ class Model
 	*/
 	function __construct($db = 0) 
 	{
-		if(!$db) // No existing database passed in? Create to a fresh one now.
+		if(!$db) // No existing database passed in? Create one.
 			$db = new Database();
 
 		$this->db = $db;
