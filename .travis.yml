@@ -1,6 +1,8 @@
 language: php
 php: 7.0
-services: mysql
+services:
+  - mysql
+  - redis-server
 before_script:
   - sudo apt-get update
   - sudo apt-get install apache2 libapache2-mod-fastcgi
