@@ -1,5 +1,7 @@
 <?php namespace SuperScore\Model;
 
+use SuperScore\Library\Database;
+
 /**
 * Base class for Models.
 */
@@ -14,6 +16,9 @@ class Model
 	*/
 	function __construct($db = 0) 
 	{
+		if(!$db) // No existing database passed in? Create to a fresh one now.
+			$db = new Database();
+
 		$this->db = $db;
 	}
 
