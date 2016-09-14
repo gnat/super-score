@@ -18,6 +18,7 @@ before_script:
   # Install APCu via PECL.
   - pear config-set preferred_state beta
   - yes '' | pecl install apcu
+  - yes '' | pecl install redis
   # Activate APCu on CLI for Travis CI.
   - phpenv config-add tests/travis/php.ini
   # Restart Apache
