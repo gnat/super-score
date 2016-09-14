@@ -106,7 +106,12 @@ class Redis extends AbstractCache
 	*/
 	function KeyDelete($key)
 	{
-		return $this->instance->delete($key);
+		$output = $this->instance->delete($key);
+
+		if($output == 1)
+			return true;
+		else
+			$output;
 	}
 
 	/**
